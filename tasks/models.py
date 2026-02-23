@@ -37,6 +37,9 @@ class Task(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE, verbose_name='User')
 
+    project = models.ForeignKey('projects.Project', on_delete=models.SET_NULL,
+                                null=True, blank=True, related_name="tasks", verbose_name="project")
+
     class Meta:
         verbose_name = 'Task'
         verbose_name_plural = 'Tasks'
