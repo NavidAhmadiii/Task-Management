@@ -15,7 +15,8 @@ class TaskViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         '''every user can only see their own tasks.'''
-        return Task.objects.filter(user=self.request.user)
+        user = self.request.user
+        return Task.objects.filter(Q(user=user) | Q(project__members=user)).distinct()
 
     def perform_create(self, serializer):
         '''Set the user field to the current user when creating a task.'''
