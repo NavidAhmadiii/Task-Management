@@ -9,7 +9,7 @@ class Project(models.Model):
     descriptions = models.TextField(blank=True, verbose_name='description')
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
                               related_name="owned_projects", verbose_name="owner")
-    member = models.ManyToManyField(
+    members = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name="projects", verbose_name="member")
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name="created_at")
@@ -23,5 +23,3 @@ class Project(models.Model):
 
     def __str__(self):
         return self.name
-    
-    

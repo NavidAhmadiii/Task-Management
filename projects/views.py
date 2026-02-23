@@ -5,9 +5,9 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
-from .models import Project, Task
-from .serializers import ProjectSerializer, TaskSerializer
-from .permissions import IsProjectOwnerOrReadOnly, IsTaskAssigneeOrReadOnly
+from .models import Project
+from .serializers import PorjectSerializer
+from .permission import IsOwnerOrReadOnly
 
 # Create your views here.
 
@@ -15,8 +15,8 @@ User = get_user_model()
 
 
 class ProjectViewSet(viewsets.ModelViewSet):
-    serializer_class = ProjectSerializer
-    permission_classes = [IsAuthenticated, IsProjectOwnerOrReadOnly]
+    serializer_class = PorjectSerializer
+    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
 
     def get_queryset(self):
         '''Return projects where the user is a member.'''

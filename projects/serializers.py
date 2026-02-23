@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Project, Task
+from .models import Project
 from django.contrib.auth import get_user_model
 
 
@@ -22,8 +22,8 @@ class PorjectSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Project
-        fields = ['id', 'name', 'description', 'owner',
-                  'members', 'task_count', 'created_at', 'updated_at']
+        fields = ['id', 'name', 'owner',
+                  'members', 'take_count', 'created_at', 'updated_at']
         read_only_fields = ['id', 'owner', 'created_at', 'updated_at']
 
 
